@@ -3,29 +3,27 @@ import { useEffect } from "react"
 import User from "./types/user"
 
 const SampleAxios = () => {
-    const url = "https://jsonplaceholder.typicode.com"
-const options: AxiosRequestConfig = {
+  const url = "https://jsonplaceholder.typicode.com"
+  const options: AxiosRequestConfig = {
     url: `${url}/users`,
     method: "GET",
-};
+  }
 
-const getData = async () => {
+  const getData = async () => {
     try {
-        const result: AxiosResponse<User[]> = await axios(options)
-        const { data, status } = result
-        console.log('data',data)
-        console.log('status',status)
+      const result: AxiosResponse<User[]> = await axios(options)
+      const { data, status } = result
+      console.log("data", data)
+      console.log("status", status)
     } catch (e) {
-        console.log(e)
+      console.log(e)
     }
-}
+  }
 
-useEffect(() => {
+  useEffect(() => {
     getData()
-}, [])
-    return (
-        <p>SampleAxios</p>
-    )
+  }, [])
+  return <p>SampleAxios</p>
 }
 
 export default SampleAxios
