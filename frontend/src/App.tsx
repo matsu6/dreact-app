@@ -1,12 +1,7 @@
 import React from "react"
-import SampleAxios from "./SampleAxios"
 
 function App() {
-  return (
-    <div className="App">
-      <SampleAxios />
-    </div>
-  )
+  return <div className="App">{}</div>
 }
 
 export default App
