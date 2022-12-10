@@ -1,10 +1,10 @@
 import React from "react"
-import SampleAxios from "./SampleAxios"
+import { InlineStyle } from "./components/InlineStyle"
 
 function App() {
   return (
     <div className="App">
-      <SampleAxios />
+      <InlineStyle />
     </div>
   )
 }
