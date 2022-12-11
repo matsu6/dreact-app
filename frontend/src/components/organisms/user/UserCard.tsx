@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, memo } from "react"
 import styled from "styled-components"
 import { Card } from "../../atoms/card/Card"
 import { UserIconWithName } from "../../molecule/user/UserIconWithName"
@@ -15,7 +15,7 @@ type UserCardProps = {
   }
 }
 
-export const UserCard: FC<UserCardProps> = (props) => {
+export const UserCard: FC<UserCardProps> = memo((props) => {
   const { user } = props
   return (
     <Card>
@@ -32,7 +32,7 @@ export const UserCard: FC<UserCardProps> = (props) => {
       </SDl>
     </Card>
   )
-}
+})
 
 const SDl = styled.dl`
   text-align: left;
