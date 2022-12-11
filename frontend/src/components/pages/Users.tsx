@@ -2,6 +2,9 @@ import styled from "styled-components"
 import { SearchInput } from "../molecule/SearchInput"
 import { HeaderOnly } from "../templates/HeaderOnly"
 import { UserCard } from "../organisms/user/UserCard"
+import { SecondaryButton } from "../atoms/button/SecondaryButton"
+import { useContext } from "react"
+import { UserContext } from "../providers/UserProvider"
 
 function* range(start: number, end: number) {
   for (let i = start; i < end; i++) {
@@ -24,11 +27,14 @@ const users = [...range(0, 10)].map((id) => {
 })
 
 export const Users = () => {
+  const { userInfo, setUserInfo } = useContext(UserContext)
+  const onClickSwitch = () => setUserInfo({ isAdmin: !userInfo.isAdmin })
   return (
     <HeaderOnly>
       <SContainer>
         <h2>ユーザー一覧</h2>
         <SearchInput />
+        <SecondaryButton onClick={onClickSwitch}>切り替え</SecondaryButton>
         <SUserArea>
           {users.map((user) => (
             <UserCard user={user} key={user.id} />
