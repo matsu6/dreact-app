@@ -1,17 +1,18 @@
-import { FC, ReactNode } from "react"
-import { Header } from "../atoms/layout/Header"
-import { Footer } from "../atoms/layout/Footer"
-type HeaderOnly = {
-  children: ReactNode
-}
+import { ReactNode } from "react"
+import { ThemeProvider, createTheme } from "@mui/material/styles"
+import CssBaseline from "@mui/material/CssBaseline"
 
-export const DefaultLayout: FC<HeaderOnly> = (props) => {
+export const DefaultLayout = (props: { children: ReactNode }) => {
+  const theme = createTheme({
+    palette: {
+      mode: "light",
+    },
+  })
   const { children } = props
   return (
-    <>
-      <Header />
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
       {children}
-      <Footer />
-    </>
+    </ThemeProvider>
   )
 }
