@@ -1,26 +1,42 @@
-import React, { useState, useCallback } from "react"
-import ChildArea from "./ChildArea"
+import React, { useState } from "react"
+import axios, { AxiosResponse } from "axios"
+import { Todo } from "./Todo"
+import { TodoType } from "./types/todo"
+import { Text } from "./Text"
+import { UserProfile } from "./UserProfile"
+
+const user = {
+  name: "John",
+  hobbies: ["映画", "ゲーム"],
+}
 
 function App() {
-  const [count, setCount] = useState(0)
-  const [text, setText] = useState("")
-  const [isOpen, setIsOpen] = useState(false)
+  const [todos, setTodos] = useState([] as TodoType[])
 
-  const onClickOpen = () => setIsOpen(!isOpen)
+  const onClickFetchData = async () => {
+    try {
+      const res: AxiosResponse<TodoType[]> = await axios.get(
+        "https://jsonplaceholder.typicode.com/todos"
+      )
+      setTodos(res.data)
+    } catch (e) {
+      console.log(e)
+    }
+  }
 
-  const onClickUp = () => setCount(count + 1)
-  const onChangeText = (e: React.ChangeEvent<HTMLInputElement>) =>
-    setText(e.target.value)
-
-  const onClickClose = useCallback(() => setIsOpen(false), [setIsOpen])
   return (
     <div className="App">
-      <input onChange={onChangeText} value={text} />
-      <br />
-      <br />
-      <button onClick={onClickUp}>表示</button>
-      <button onClick={onClickOpen}>切り替え</button>
-      <ChildArea isOpen={isOpen} onClickClose={onClickClose} />
+      <UserProfile user={user} />
+      <button onClick={onClickFetchData}>todo</button>
+      {todos.map((todo) => (
+        <Todo
+          key={todo.id}
+          userId={todo.id}
+          title={todo.title}
+          completed={todo.completed}
+        />
+      ))}
+      <Text color="red" fontSize="18px" />
     </div>
   )
 }
