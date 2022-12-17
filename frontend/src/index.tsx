@@ -2,15 +2,12 @@ import React from "react"
 import ReactDOM from "react-dom/client"
 import App from "./App"
 import { RouterConfig } from "./RouterConfig"
-import { UserProvider } from "./components/providers/UserProvider"
 
 const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement)
 root.render(
   <React.StrictMode>
-    <UserProvider>
-      <RouterConfig />
-      {/* <App /> */}
-    </UserProvider>
+    <RouterConfig />
+    {/* <App /> */}
   </React.StrictMode>
 )
 
